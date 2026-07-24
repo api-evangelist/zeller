@@ -1,0 +1,105 @@
+aid: zeller
+name: Zeller
+review:
+  question: Does Zeller publish a public, anonymously downloadable API surface (OpenAPI/Swagger), or is its developer program gated?
+  answer: false
+  date: '2026-07-24'
+  reviewer: API Evangelist
+  homeMarket: Australia
+findings:
+  summary: |
+    Zeller (myzeller.com) is an Australian merchant acquirer and business-banking
+    provider for SMEs, founded 2020 in Melbourne by former Square Australia
+    executives Ben Pfisterer and Dominic Yap. It runs a genuine, first-party
+    developer program — the Zeller Developer Suite — but the reference
+    documentation and API artifacts are gated behind a free developer account,
+    not publicly downloadable.
+
+    Developer portal: https://developer.myzeller.com/ is LIVE but gated — an
+    anonymous request to the portal root redirects to an Auth0 login
+    (auth.developer.myzeller.com). The public marketing entry point is
+    https://www.myzeller.com/au/developer-suite (HTTP 200), which describes the
+    product APIs and SDKs without exposing the reference docs.
+
+    Product API family (from the public developer-suite page): Terminal (connect
+    POS software to Zeller Terminal hardware), Online (in web/mobile app
+    payments), Tap to Pay (contactless on-device, no terminal), and eCommerce
+    (payment gateway, marked "Coming soon" — NOT listed as a live API here to
+    avoid fabrication). Delivery is via the Zeller Payments SDK for React, React
+    Native, Windows .NET, Android, and iOS.
+
+    Downloadable specs: NONE found. Probes of common paths on the developer host
+    (/docs, /api-reference, /openapi.json, /openapi.yaml, /graphql,
+    /getting-started) all returned 404 while unauthenticated; the portal itself
+    returns 400/redirect-to-login without valid Auth0 parameters. No anonymous
+    OpenAPI, Swagger, GraphQL SDL, Postman collection, or AsyncAPI was
+    retrievable. specs_count = 0.
+
+    Auth model: OAuth2 / OpenID Connect via an Auth0 tenant. The discovery
+    document at https://auth.developer.myzeller.com/.well-known/openid-configuration
+    (HTTP 200, anonymous) advertises authorization_code, client_credentials,
+    refresh_token, device_code, and token-exchange grant types, PKCE (S256), and
+    standard OIDC scopes (openid, profile, offline_access, email, phone,
+    address). This is the developer-portal identity layer; per-product payment
+    API scopes are not exposed anonymously.
+
+    Payments card scheme support (marketing): Visa, Mastercard, eftpos, American
+    Express, JCB, Apple Pay, Google Wallet. Home market is Australia; Zeller
+    operates under Australia's Consumer Data Right (CDR) framework and the
+    broader NPP / AP+ real-time payments landscape, though no CDR/NPP scheme
+    conformance artifacts are published on the developer surface.
+
+    Webhooks / events: not documented on the public surface; presence within the
+    gated docs is unconfirmed (not asserted here — no fabrication).
+  transports:
+  - protocol: REST
+    scheme: https
+    documented: gated
+    note: Terminal / Online / Tap to Pay APIs are delivered via SDKs; the REST reference is behind a free developer account, not anonymously reachable.
+  - protocol: OIDC
+    scheme: https
+    issuer: https://auth.developer.myzeller.com/
+    documented: true
+    note: Auth0 OpenID Connect discovery document is publicly readable and confirms the OAuth2/OIDC auth model for the developer portal.
+  probes:
+  - url: https://developer.myzeller.com/
+    status: 400
+    note: Returns 400 / redirects to Auth0 login without valid auth params — live but gated developer portal.
+  - url: https://www.myzeller.com/au/developer-suite
+    status: 200
+    note: Public developer-suite landing page; describes Terminal, Online, Tap to Pay, eCommerce (coming soon) and the Payments SDKs.
+  - url: https://auth.developer.myzeller.com/.well-known/openid-configuration
+    status: 200
+    note: Auth0 OIDC discovery document (anonymous). Confirms OAuth2/OIDC, PKCE, grant types and scopes.
+  - url: https://developer.myzeller.com/openapi.json
+    status: 404
+    note: No anonymous OpenAPI at this path.
+  - url: https://developer.myzeller.com/graphql
+    status: 404
+    note: No anonymous GraphQL surface at this path.
+  - url: https://github.com/myzeller
+    status: 200
+    note: Official Zeller GitHub org, reserved ("Do not use - reserved for future use"), 0 public repos.
+sources:
+- url: https://www.myzeller.com/au/developer-suite
+  type: Documentation
+  note: Public developer-suite page listing product APIs and SDKs.
+- url: https://developer.myzeller.com/
+  type: DeveloperPortal
+  note: Gated Zeller Developer portal (Auth0-authenticated).
+- url: https://auth.developer.myzeller.com/.well-known/openid-configuration
+  type: Authentication
+  note: Auth0 OIDC discovery document confirming the OAuth2/OIDC auth model.
+- url: https://en.wikipedia.org/wiki/Zeller_(company)
+  type: Reference
+  note: Company background — Melbourne, 2020, Pfisterer/Yap, acquirer for SMEs.
+actions:
+  openapiHarvested: false
+  specsCount: 0
+  reason: |
+    Zeller runs a real, live developer program but gates all reference docs and
+    API artifacts behind a free developer account. No OpenAPI/Swagger/GraphQL/
+    Postman/AsyncAPI is retrievable anonymously, so none was saved. Identity plus
+    the confirmed gated developer portal and the anonymous OIDC auth model were
+    captured faithfully; enrichment can resume once developer-account access is
+    obtained.
