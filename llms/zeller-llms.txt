@@ -1,0 +1,35 @@
+# Zeller
+
+> Zeller is a Melbourne-founded Australian payments and business banking company (founded 2020 by former Square Australia executives Ben Pfisterer and Dominic Yap) giving SMEs an integrated stack of card payment acceptance, a transaction account, a Mastercard debit card, and financial management tools. As a PCI DSS Level 1 merchant acquirer it processes in-person and online card payments (Visa, Mastercard, eftpos, American Express, JCB, Apple Pay, Google Wallet) across Zeller Terminal hardware, Tap to Pay on mobile, and online checkout. The Zeller Developer Suite ships first-party Payments SDKs (React, React Native, Windows .NET, Android, iOS) plus Terminal, Online, and Tap to Pay integration APIs. Reference documentation is gated behind a free Zeller Developer account (Redocly Realm portal, OIDC login); no anonymous OpenAPI is published.
+
+## APIs
+
+- [Zeller Terminal API](https://www.myzeller.com/au/developer-suite): Connect point-of-sale software to Zeller Terminal hardware for in-person card payments, via the Zeller Payments SDK.
+- [Zeller Online Payments API](https://www.myzeller.com/au/developer-suite): Accept payments inside web and mobile apps via Zeller's Online integration.
+- [Zeller Tap to Pay API](https://www.myzeller.com/au/developer-suite): Accept contactless card and mobile-wallet payments on a phone with no separate terminal.
+
+## Developer
+
+- [Developer Suite](https://www.myzeller.com/au/developer-suite): Overview of SDKs and APIs.
+- [Developer Portal](https://developer.myzeller.com/): Gated reference docs — create a free Zeller Developer account (Redocly Realm, OIDC login).
+- [MCP server](https://developer.myzeller.com/_mcp): Hosted documentation-search MCP server (OAuth-gated; dynamic client registration supported).
+- [SDK EULA](https://www.myzeller.com/sdk-eula): Terms for the first-party Payments SDKs.
+
+## Artifacts
+
+- [Authentication profile](authentication/zeller-authentication.yml): OAuth2/OIDC portal + MCP auth surface.
+- [Well-known index](well-known/zeller-well-known.yml): oauth-authorization-server discovery (RFC 8414).
+- [MCP server manifest](mcp/zeller-mcp.yml): hosted docs-search MCP, auth-gated.
+- [Packages / SDKs](packages/zeller-packages.yml): five first-party Payments SDKs (portal-distributed).
+- [Conformance](conformance/zeller-conformance.yml): PCI DSS Level 1, EMV card-scheme certification, OAuth2/OIDC.
+- [Domain security](security/zeller-domain-security.yml): TLS/HSTS/SPF/DMARC probe.
+
+## Company
+
+- [Website](https://www.myzeller.com/au)
+- [Pricing](https://www.myzeller.com/au/pricing)
+- [Security](https://www.myzeller.com/au/security)
+- [Blog](https://www.myzeller.com/au/blog)
+- [Support](https://www.myzeller.com/au/support)
+- [Terms of Service](https://www.myzeller.com/au/terms)
+- [Privacy Policy](https://www.myzeller.com/au/privacy)

@@ -79,6 +79,24 @@ apis:
   - type: SignUp
     url: https://developer.myzeller.com/
 common:
+- type: DomainSecurity
+  url: security/zeller-domain-security.yml
+- type: Authentication
+  url: authentication/zeller-authentication.yml
+- type: WellKnown
+  url: well-known/zeller-well-known.yml
+- type: MCPServer
+  url: mcp/zeller-mcp.yml
+- type: Packages
+  url: packages/zeller-packages.yml
+- type: SDKs
+  url: packages/zeller-packages.yml
+- type: Conformance
+  url: conformance/zeller-conformance.yml
+- type: Compliance
+  url: https://www.myzeller.com/au/security
+- type: LLMsTxt
+  url: llms/zeller-llms.txt
 - type: Website
   url: https://www.myzeller.com/au
 - type: DeveloperPortal

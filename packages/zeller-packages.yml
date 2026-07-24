@@ -1,0 +1,47 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.myzeller.com/au/developer-suite
+distribution: developer-portal    # SDKs are delivered via the gated Zeller Developer account, not public registries
+notes: >-
+  Zeller publishes a first-party Payments SDK across five platforms as part of the
+  Zeller Developer Suite. The libraries are distributed through the free (gated)
+  Zeller Developer account under the Zeller SDK EULA (https://www.myzeller.com/sdk-eula);
+  none are published to public package registries (npm/PyPI/Maven/NuGet/RubyGems were
+  probed and returned no first-party Zeller packages — the "zeller" npm names are
+  unrelated third-party projects). The github.com/myzeller org has 0 public repos.
+packages:
+- name: Zeller Payments SDK (React)
+  language: javascript
+  platform: react
+  official: true
+  registry: none
+  distribution: developer-portal
+  eula: https://www.myzeller.com/sdk-eula
+- name: Zeller Payments SDK (React Native)
+  language: javascript
+  platform: react-native
+  official: true
+  registry: none
+  distribution: developer-portal
+  eula: https://www.myzeller.com/sdk-eula
+- name: Zeller Payments SDK (Windows .NET)
+  language: csharp
+  platform: windows-dotnet
+  official: true
+  registry: none
+  distribution: developer-portal
+  eula: https://www.myzeller.com/sdk-eula
+- name: Zeller Payments SDK (Android)
+  language: kotlin
+  platform: android
+  official: true
+  registry: none
+  distribution: developer-portal
+  eula: https://www.myzeller.com/sdk-eula
+- name: Zeller Payments SDK (iOS)
+  language: swift
+  platform: ios
+  official: true
+  registry: none
+  distribution: developer-portal
+  eula: https://www.myzeller.com/sdk-eula

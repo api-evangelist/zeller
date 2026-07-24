@@ -1,0 +1,37 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.myzeller.com/au/security
+standards:
+- id: pci-dss
+  conforms: true
+  level: "Level 1"
+  evidence: "Zeller /au/security states 'PCI Level 1 compliant' with 'Full PCI-DSS certification'"
+- id: emv
+  conforms: true
+  evidence: "Certified by Europay, Mastercard, Visa, American Express, eftpos and JCB (EMV card-scheme certification)"
+- id: oauth2
+  conforms: true
+  evidence: "Developer portal / MCP oauth-authorization-server advertises OAuth2 authorization_code + client_credentials + refresh_token"
+- id: oidc
+  conforms: true
+  evidence: "OIDC scopes (openid/profile/email/offline_access) + RS256 id_token signing in the well-known"
+- id: two-factor-authentication
+  conforms: true
+  evidence: "Account access protected by two-factor authentication (/au/security)"
+- id: end-to-end-encryption
+  conforms: true
+  evidence: "End-to-end card payment encryption with multiple layers of encryption (/au/security)"
+compliance_program:
+  url: https://www.myzeller.com/au/security
+  certifications:
+  - PCI DSS Level 1
+  - EMV (Visa / Mastercard / American Express / eftpos / JCB)
+  controls:
+  - End-to-end card payment encryption
+  - Two-factor authentication
+  - 24/7 real-time fraud monitoring
+notes: >-
+  Zeller is an Australian merchant acquirer; its published security posture centers on
+  PCI DSS Level 1 certification and full card-scheme (EMV) certification. No SOC 2 /
+  ISO 27001 claim, no dedicated trust center, and no responsible-disclosure / bug-bounty
+  program were found on the public site.

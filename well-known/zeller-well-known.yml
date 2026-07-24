@@ -1,0 +1,28 @@
+generated: '2026-07-24'
+method: searched
+source: live probes of developer.myzeller.com + www.myzeller.com /.well-known/*
+hosts:
+- host: https://developer.myzeller.com
+  documents:
+  - path: /.well-known/oauth-authorization-server   # RFC 8414 (backs the gated MCP + portal OAuth)
+    status: 200
+    file: zeller-oauth-authorization-server.json
+  - path: /.well-known/openid-configuration           # OIDC discovery
+    status: 404
+  - path: /.well-known/oauth-protected-resource        # RFC 9728
+    status: 404
+  - path: /.well-known/security.txt                     # RFC 9116
+    status: 404
+- host: https://www.myzeller.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+notes: >-
+  developer.myzeller.com is a Redocly Realm ("Reunite") documentation portal.
+  The oauth-authorization-server document is issued by auth.cloud.redocly.com and
+  backs the portal login and the hosted MCP server (authorization/token endpoints
+  under /_mcp/oauth2/*). It advertises authorization_code + refresh_token +
+  client_credentials grants, scopes openid/profile/email/offline_access, PKCE S256,
+  and dynamic client registration (registration_endpoint /_mcp/register). This is
+  the DOCS-PORTAL auth surface, not the Zeller payments API auth (which is gated
+  behind a free developer account and publishes no anonymous spec).

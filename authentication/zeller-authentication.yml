@@ -1,0 +1,31 @@
+generated: '2026-07-24'
+method: searched
+source: https://developer.myzeller.com/.well-known/oauth-authorization-server
+docs: https://developer.myzeller.com/
+summary:
+  types: [oauth2, openIdConnect]
+  oauth2_flows: [authorizationCode, clientCredentials, refreshToken]
+  api_key_in: []
+  gated: true
+schemes:
+- name: PortalOAuth2
+  type: oauth2
+  description: >-
+    OAuth2 / OpenID Connect protecting the Zeller developer portal (Redocly Realm
+    "Reunite") and its hosted MCP server. Issuer auth.cloud.redocly.com; PKCE S256;
+    dynamic client registration supported.
+  issuer: https://auth.cloud.redocly.com
+  authorization_endpoint: https://developer.myzeller.com/_mcp/oauth2/auth
+  token_endpoint: https://developer.myzeller.com/_mcp/oauth2/token-portal
+  registration_endpoint: https://developer.myzeller.com/_mcp/register
+  flows: [authorizationCode, clientCredentials, refreshToken]
+  scopes: [openid, profile, email, offline_access]
+  pkce: S256
+  sources: [well-known/zeller-oauth-authorization-server.json]
+notes: >-
+  Only the developer-portal / MCP OAuth surface is publicly discoverable. The
+  Zeller payments API (Terminal, Online, Tap to Pay) authenticates via credentials
+  issued after creating a free Zeller Developer account; its authentication model is
+  documented only behind that login and no anonymous OpenAPI securitySchemes are
+  published. apis.yml notes the portal historically fronted an Auth0 (OIDC) tenant;
+  the live well-known now resolves to Redocly's hosted auth.
