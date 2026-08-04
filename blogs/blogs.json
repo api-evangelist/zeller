@@ -1,0 +1,14 @@
+{
+  "repo": "zeller",
+  "feeds": [
+    {
+      "source": "https://www.myzeller.com/au/pricing",
+      "feed_url": "https://www.myzeller.com/au/pricing",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-01T15:49:00Z"
+}

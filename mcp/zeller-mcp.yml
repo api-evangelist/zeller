@@ -1,6 +1,7 @@
 generated: '2026-07-24'
 method: searched
-status: published        # published, but auth-gated
+status: published
+status_raw: published
 source: https://developer.myzeller.com/app-data.json  # mcpData.docs.enabled=true
 server:
   name: Zeller Developer MCP server
