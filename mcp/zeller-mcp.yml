@@ -2,10 +2,10 @@ generated: '2026-07-24'
 method: searched
 status: published
 status_raw: published
-source: https://developer.myzeller.com/app-data.json  # mcpData.docs.enabled=true
+source: https://developer.myzeller.com/app-data.json
 server:
   name: Zeller Developer MCP server
-  kind: documentation-search        # Redocly Realm docs MCP, NOT a REST-bound tool server
+  kind: documentation-search
   transport: http
   url: https://developer.myzeller.com/_mcp
   auth:
@@ -13,17 +13,31 @@ server:
     gated: true
     authorization_endpoint: https://developer.myzeller.com/_mcp/oauth2/auth
     token_endpoint: https://developer.myzeller.com/_mcp/oauth2/token-portal
-    registration_endpoint: https://developer.myzeller.com/_mcp/register   # dynamic client registration
+    registration_endpoint: https://developer.myzeller.com/_mcp/register
     issuer: https://auth.cloud.redocly.com
-    scopes_supported: [openid, profile, email, offline_access]
-    grant_types: [authorization_code, refresh_token, client_credentials]
+    scopes_supported:
+    - openid
+    - profile
+    - email
+    - offline_access
+    grant_types:
+    - authorization_code
+    - refresh_token
+    - client_credentials
     pkce: S256
     well_known: well-known/zeller-oauth-authorization-server.json
-tools: []   # tools/list is OAuth-gated; anonymous POST to /_mcp returns the docs 404 shell
-notes: >-
-  Zeller's developer portal (Redocly Realm) ships a hosted MCP server whose purpose
-  is documentation search over the gated reference docs, surfaced via config flag
-  mcpData.docs.enabled. It is NOT a set of tools bound to the payments API. The live
-  tools/list manifest requires an authenticated OAuth session (dynamic client
-  registration is supported), so tool input schemas cannot be captured anonymously.
-  No public OpenAPI exists to bind tools against, so no tool-crosswalk is emitted.
+tools: []
+notes: Zeller's developer portal (Redocly Realm) ships a hosted MCP server whose purpose is documentation
+  search over the gated reference docs, surfaced via config flag mcpData.docs.enabled. It is NOT a set
+  of tools bound to the payments API. The live tools/list manifest requires an authenticated OAuth session
+  (dynamic client registration is supported), so tool input schemas cannot be captured anonymously. No
+  public OpenAPI exists to bind tools against, so no tool-crosswalk is emitted.
+deployment:
+  mode: none
+  endpoint: https://developer.myzeller.com/_mcp
+  verified: probed
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census
